@@ -26,6 +26,7 @@ type TermDetailState = {
   selectedTerm: SelectedDate;
   loading: boolean;
   savingStatus: FormDataSaveStatus;
+  completeStatus: FormDataSaveStatus;
   saveError: string;
   availableSlots: Record<string, { id: string; time: string; }[]>;
 }
@@ -45,6 +46,7 @@ const initialState: TermDetailState = {
   selectedTerm: { date: '', term: '', id: '' },
   loading: false,
   savingStatus: 'none',
+  completeStatus: 'none',
   saveError: '',
   availableSlots: {}
 };
@@ -81,6 +83,15 @@ export const TermDetailStore = signalStore(
         patchState(store, { savingStatus: 'success' });
       } catch (error: any) {
         patchState(store, { savingStatus: 'error', saveError: error.error.message });
+      }
+    },
+
+    async completeRezervation(id: string): Promise<void> {
+      try {
+        await firstValueFrom(calendarService.sendCompleteData({ id }));
+        patchState(store, { completeStatus: 'success' });
+      } catch (error: any) {
+        patchState(store, { completeStatus: 'error' });
       }
     },
 

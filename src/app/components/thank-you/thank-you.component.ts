@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { TermDetailStore } from '../../store/term-detail.store';
 
 @Component({
   selector: 'app-thank-you',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './thank-you.component.css'
 })
 export class ThankYouComponent {
-  @Input() name: string = 'ADAM';
+  store = inject(TermDetailStore);
 
   close(): void {
    window.location.href = 'https://nemocnicabory.sk';

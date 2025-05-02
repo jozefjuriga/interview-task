@@ -30,5 +30,12 @@ export const appRoutes: Route[] = [
     canActivate: [StepGuard],
     data: { step: 4 }
   },
+  {
+    path: 'error',
+    loadComponent: () =>
+      import('./components/error/error.component').then((m) => m.ErrorComponent),
+    canActivate: [StepGuard],
+    data: { step: 4 }
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
