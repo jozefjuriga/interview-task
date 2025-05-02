@@ -2,7 +2,6 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { TermDetailStore } from '../../store/term-detail.store';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { allSlovakCities } from '../../utils/constans';
 import { DatePipe, NgIf } from '@angular/common';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { Router } from '@angular/router';

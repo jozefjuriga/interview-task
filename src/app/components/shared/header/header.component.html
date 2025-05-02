@@ -1,6 +1,6 @@
 <div class="header-container">
   <img src="/images/logo-container.svg" alt="Logo">
-  <div>
+  <div *ngIf="store.currentStep() < 4">
     <div class="custom-stepper">
       <div class="step" [ngClass]="{'active': store.currentStep() === 1}">
         <div class="circle-container">
@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <button class="btn-close" (click)="onOpenModal()">
+  <button *ngIf="store.currentStep() < 4" class="btn-close" (click)="onOpenModal()">
     <img src="/images/05-cell-ics-close_filled.svg" alt="Close button">
   </button>
 </div>

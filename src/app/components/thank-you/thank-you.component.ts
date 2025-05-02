@@ -1,9 +1,12 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TermDetailStore } from '../../store/term-detail.store';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-thank-you',
-  imports: [],
+  imports: [
+    UpperCasePipe
+  ],
   templateUrl: './thank-you.component.html',
   styleUrl: './thank-you.component.css'
 })
