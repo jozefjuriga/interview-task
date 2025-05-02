@@ -1,0 +1,93 @@
+<div class="personal-data-container">
+  <h2>Osobné údaje</h2>
+
+  <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Meno</mat-label>
+        <input matInput formControlName="firstName" required>
+        <mat-error *ngIf="personalForm.get('firstName')?.hasError('required')">
+          Prosím, zadajte meno.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Priezvisko</mat-label>
+        <input matInput formControlName="lastName" required>
+        <mat-error *ngIf="personalForm.get('lastName')?.hasError('required')">
+          Prosím, zadajte priezvisko.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row ">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Rodné číslo</mat-label>
+        <input matInput formControlName="birthNumber" placeholder="e.g., 900101/1234" required>
+        <mat-error *ngIf="personalForm.get('birthNumber')?.hasError('required')">
+         Prosím, zadajte rodsné číslo.
+        </mat-error>
+        <mat-error *ngIf="personalForm.get('birthNumber')?.hasError('invalidBirthNumber')">
+          {{ personalForm.get('birthNumber')?.getError('invalidBirthNumber').message }}
+
+        </mat-error>
+        <mat-error *ngIf="personalForm.get('birthNumber')?.hasError('adult')">
+          {{ personalForm.get('birthNumber')?.getError('adult').message }}
+
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Štát</mat-label>
+        <mat-select formControlName="country" required>
+          <mat-option value="SVK">Slovensko</mat-option>
+          <mat-option value="CZE">Česká republika</mat-option>
+        </mat-select>
+        <mat-error *ngIf="personalForm.get('country')?.hasError('required')">
+          Prosím, vyberte krajinu.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label  [ngClass]="{'disabled': !isSlovakCountrySelected}">Mesto / Obec</mat-label>
+        <mat-select
+          formControlName="city"
+          [required]="isSlovakCountrySelected()"
+          [disabled]="!isSlovakCountrySelected()">
+          @for (option of allSlovakCities; track option) {
+            <mat-option [value]="option">{{option}}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="personalForm.get('city')?.hasError('required') && isSlovakCountrySelected">
+          Prosím, vyberte mesto.
+        </mat-error>
+        <mat-error *ngIf="personalForm.get('city')?.invalid && (personalForm.get('city')?.dirty || personalForm.get('city')?.touched)">
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <h2>Kontaktné údaje</h2>
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="email-field half-width">
+        <mat-label>Emailová adresa</mat-label>
+        <input matInput type="email" formControlName="email" required>
+        <mat-error *ngIf="personalForm.get('email')?.hasError('required')">
+          Prosím, zadajte email.
+        </mat-error>
+        <mat-error *ngIf="personalForm.get('email')?.hasError('email')">
+          Zlý formát emailu.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="seperator"></div>
+    <hr>
+    <div class="btn-holder">
+      <button class="btn-success " type="submit" [disabled]="personalForm.invalid">
+        Pokračovať
+      </button>
+    </div>
+  </form>
+</div>

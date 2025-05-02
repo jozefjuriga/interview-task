@@ -1,0 +1,81 @@
+<h2 >Zhrnutie rezervácie</h2>
+<div class="personal-data-container">
+  <div class="detail-container">
+    <div class="box">
+      <span class="success-header">Osobné údaje</span>
+      <div class="form-row p-t-20">
+        <mat-form-field appearance="fill">
+          <mat-label>Meno</mat-label>
+          <input matInput [value]="store.formData.firstName()" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Priezvisko</mat-label>
+          <input matInput [value]="store.formData.lastName()" readonly>
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Rodné číslo</mat-label>
+          <input matInput readonly [value]="store.formData.birthNumber()">
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Mesto</mat-label>
+          <input matInput readonly [value]="store.formData.city()">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Adresa</mat-label>
+          <input matInput readonly [value]="store.formData.country()">
+        </mat-form-field>
+      </div>
+      <span class="success-header">Kontaktné údaje</span>
+      <div class="form-row p-t-20">
+        <mat-form-field appearance="fill">
+          <mat-label>E-mailová adresa</mat-label>
+          <input matInput [value]="store.formData.email()" readonly>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="box">
+      <span class="success-header">Vybraný termín</span>
+      <p class="green">{{store.selectedTerm.date() | date:'d. LLLL yyyy':'sk'}} o {{store.selectedTerm.term()}}</p>
+    </div>
+  </div>
+  <div class="seperator"></div>
+  <form [formGroup]="checkboxForm" (ngSubmit)="onSubmit()">
+    <div class="checkbox-group">
+      <mat-checkbox formControlName="personal">
+        Oboznámil/a som sa s <a href="https://google.com" target="_blank">informáciami o spracúvaní osobných údajov</a>.
+      </mat-checkbox>
+      <div *ngIf="personal?.errors?.['required'] && (personal?.touched)" class="error">
+        Prosím, zaškrtnite toto pole.
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <mat-checkbox formControlName="terms">
+        Súhlasím so <a href="https://nemocnica-bory.sk/vop/" target="_blank">všeobecnými obchodnými podmienkami</a> spoločnosti Nemocnica Bory, a.s.
+      </mat-checkbox>
+      <div *ngIf="terms?.errors?.['required'] && (terms?.touched)" class="error">
+        Prosím, zaškrtnite toto pole.
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <mat-checkbox formControlName="marketing">
+        Súhlasím so <a href="https://nemocnica-bory.sk/marketing-suhlas/" target="_blank"> spracovaním údajov pre marketingové účely</a>.
+      </mat-checkbox>
+    </div>
+    <hr>
+    <div class="btn-holder">
+      <button class="btn-success" type="submit" [disabled]="checkboxForm.invalid" >
+        Rezervovať a uhradiť
+      </button>
+    </div>
+  </form>
+</div>
+
+

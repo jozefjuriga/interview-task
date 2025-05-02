@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <h1>Doprajte si druhý názor od XX v Nemocnici Bory</h1>
+      <p>
+        Vyberte si termín na XX-minútovú konzultáciu  za poplatok a náš odborník zhodnotí váš zdravotný stav a odporučí spôsob liečby
+      </p>
+    </div>
+    <div class="calendar-content">
+      <div class="calendar-section">
+        <h2>Vyberte Dátum</h2>
+        <div *ngIf="this.store.loading()" class="loading-spinner">
+          <mat-spinner [diameter]="50"></mat-spinner>
+          <p>Načítavam dostupné termíny...</p>
+        </div>
+        <mat-calendar
+          *ngIf="!this.store.loading()"
+          [selected]="selectedDate"
+          (selectedChange)="onDateSelected($event)"
+          [dateClass]="highlightDates">
+        </mat-calendar>
+      </div>
+      <hr>
+      <div class="slots-section">
+        <h2>Dostupné časy</h2>
+
+        <div *ngIf="!isSelectedDate()">
+          <p>Vyberte dátum v kalendári, aby ste videli dostupné termíny.</p>
+        </div>
+
+        <div *ngIf="isSelectedDate() && daySlots.length > 0" class="time-slots-container">
+          <div *ngFor="let slot of daySlots">
+            <input
+              class="time-slot-radio"
+              type="radio"
+              id="{{ slot.id }}"
+              [(ngModel)]="timeSlot"
+              [value]="slot">
+            <label
+              class="time-slot-item" [ngClass]="{'checked': timeSlot?.id === slot.id}"
+              for="{{ slot.id }}">
+              {{ slot.time }}
+            </label>
+          </div>
+        </div>
+
+        <div *ngIf="isSelectedDate() && daySlots.length === 0 && !this.store.loading()">
+          <p>Pre vybraný dátum nie sú dostupné žiadne termíny.</p>
+        </div>
+      </div>
+    </div>
+    <div class="seperator"></div>
+    <hr>
+    <div class="btn-holder">
+      <button
+        class="btn-success"
+        type="button"
+        (click)="nexStep(timeSlot,selectedDate)"
+        [disabled]="!timeSlot?.id?.length">
+        Pokračovať
+      </button>
+    </div>
+  </div>
+</div>
+

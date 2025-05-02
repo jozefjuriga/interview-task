@@ -1,0 +1,46 @@
+h2 {
+    text-align: center;
+    padding: 30px 0;
+}
+.detail-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 32px;
+    border-radius: 16px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.box {
+    background: #FFFFFF;
+    padding: 24px;
+    border-radius: 16px;
+    min-width: 400px;
+}
+
+.success-header {
+    padding: 8px;
+    border-radius: 12px;
+    color: #0BA13B;
+    background: #DAF1E1;
+}
+
+.p-t-20 {
+    padding-top: 20px;
+}
+
+.detail-container label {
+    color: #B2B4B7;
+    font-size: 12px;
+}
+
+.detail-container input {
+    color: #033E75;
+    font-size: 16px;
+}
+
+.green {
+    color: #0BA13B;
+    font-size: 16px;
+}

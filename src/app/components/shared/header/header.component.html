@@ -1,0 +1,49 @@
+<div class="header-container">
+  <img src="/images/logo-container.svg" alt="Logo">
+  <div>
+    <div class="custom-stepper">
+      <div class="step" [ngClass]="{'active': store.currentStep() === 1}">
+        <div class="circle-container">
+          <div class="outer-circle">
+            <div class="inner-circle"></div>
+          </div>
+        </div>
+        <div class="label">Výber termínu</div>
+      </div>
+      <div class="line"></div>
+      <div class="step" [ngClass]="{'active': store.currentStep() === 2}">
+        <div class="circle-container">
+          <div class="outer-circle">
+            <div class="inner-circle"></div>
+          </div>
+        </div>
+        <div class="label">Vaše údaje</div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="step" [ngClass]="{'active': store.currentStep() === 3}">
+        <div class="circle-container">
+          <div class="outer-circle">
+            <div class="inner-circle"></div>
+          </div>
+        </div>
+        <div class="label">Zhrnutie</div>
+      </div>
+    </div>
+  </div>
+  <button class="btn-close" (click)="onOpenModal()">
+    <img src="/images/05-cell-ics-close_filled.svg" alt="Close button">
+  </button>
+</div>
+<div *ngIf="showModal" class="modal">
+  <div class="modal-container">
+    <img (click)="onBack()" class="modal-close" ngSrc="/images/05-cell-ics-close_filled.svg" alt="Close button" height="32" width="32">
+    <h2>Chystáte sa zrušiť rezervačný proces</h2>
+    <p>Naozaj chcete zrušiť proces rezervácie? Po tomto kroku stratíte uložené zmeny a v prípade opätovnej rezervácie bude potrebné spraviť celý proces odznova.</p>
+    <div class="buttons">
+      <button (click)="onClose()" class="btn-cancel">Áno, zrušiť rezerváciu</button>
+      <button (click)="onBack()" class="btn-success">Nie, chcem pokračovať</button>
+    </div>
+  </div>
+</div>

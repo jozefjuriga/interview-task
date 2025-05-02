@@ -1,0 +1,20 @@
+.personal-data-container {
+    background: #FFFFFF;
+    padding: 24px;
+    border-radius: 16px;
+    width: 800px;
+}
+
+.personal-data-container {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+mat-error {
+    color: #FF0000;
+}
+
+mat-label.disabled {
+    color: #ccc;
+}
+

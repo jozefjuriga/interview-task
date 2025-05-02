@@ -1,0 +1,104 @@
+.calendar-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    text-align: center;
+    padding: 10px 32px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-header p {
+   max-width: 432px;
+}
+
+.calendar-content {
+    background: #FFFFFF;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 32px;
+    border-radius: 16px;
+}
+
+.calendar-section {
+    flex: 1;
+}
+
+.slots-section {
+    flex: 1;
+}
+
+.time-slots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.time-slot-item {
+    width: 96px;
+    height: 48px;
+    border-radius: 32px;
+    padding: 14px 24px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.time-slot-item:hover, .time-slot-item.checked  {
+    outline: none;
+    background: #0BA13B;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+}
+
+.time-slot-item label {
+    cursor: pointer;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+::ng-deep .highlight-available .mat-calendar-body-cell-content::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 8px;
+    right: 25px;
+    transition: all 0.2s ease;
+}
+.time-slot-radio {
+    display: none;
+}
+
+::ng-deep .mat-calendar-body-cell-content {
+    position: relative;
+}
+
+::ng-deep .mat-calendar-body-active .mat-calendar-body-selected {
+    background: #0BA13B;
+    color: #FFFFFF;
+}
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color:#FFFFFF !important;
+}
